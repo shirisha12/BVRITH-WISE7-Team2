@@ -9,9 +9,15 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'bcrypt',
+    'docutils',
     'pyramid',
-    'pyramid_chameleon',
+    'pyramid_jinja2',
     'pyramid_debugtoolbar',
+    'pyramid_tm',
+    'SQLAlchemy',
+    'transaction',
+    'zope.sqlalchemy',
     'waitress',
     ]
 
@@ -21,9 +27,9 @@ tests_require = [
     'pytest-cov',
     ]
 
-setup(name='whee',
+setup(name='tutorial',
       version='0.0',
-      description='whee',
+      description='tutorial',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
@@ -34,7 +40,7 @@ setup(name='whee',
       author='',
       author_email='',
       url='',
-      keywords='web pyramid pylons',
+      keywords='web wsgi bfg pylons pyramid',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
@@ -44,6 +50,8 @@ setup(name='whee',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
-      main = whee:main
+      main = tutorial:main
+      [console_scripts]
+      initialize_tutorial_db = tutorial.scripts.initializedb:main
       """,
       )
